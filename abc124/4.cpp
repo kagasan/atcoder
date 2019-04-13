@@ -1,36 +1,48 @@
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long ll;
-typedef pair<ll, ll>P;
-typedef pair<P, P>PP;
+
 int main(){
 
-    ll X, Y, Z, K;
-    cin >> X >> Y >> Z >> K;
-    vector<ll>A(X), B(Y), C(Z);
-    for(int i = 0; i < X; i++)cin >> A[i];
-    for(int i = 0; i < Y; i++)cin >> B[i];
-    for(int i = 0; i < Z; i++)cin >> C[i];
-    sort(A.begin(), A.end(), greater<ll>());
-    sort(B.begin(), B.end(), greater<ll>());
-    sort(C.begin(), C.end(), greater<ll>());
-    priority_queue<PP>Q;
-    Q.push(PP(P(A[0] + B[0] + C[0], 0), P(0, 0)));
-    map<PP, int>flg;
-    for(int i = 0; i < K;){
-        PP pp = Q.top();
-        Q.pop();
-        if(flg[pp])continue;
-        flg[pp] = 1;
-        i++;
-        cout << pp.first.first << endl;
-        int a = pp.first.second;
-        int b = pp.second.first;
-        int c = pp.second.second;
-        if(a+1<X)Q.push(PP(P(A[a+1]+B[b]+C[c], a+1), P(b, c)));
-        if(b+1<Y)Q.push(PP(P(A[a]+B[b+1]+C[c], a), P(b+1, c)));
-        if(c+1<Z)Q.push(PP(P(A[a]+B[b]+C[c+1], a), P(b, c+1)));
+    ll N, K;
+    cin >> N >> K;
+    string s;
+    cin >> s;
+    s += '2';
+    vector<int>color;
+    vector<int>length;
+    for(int c = 1, l = 0, i = 0; i < s.size(); i++){
+        if(s[i] - '0' != c){
+            color.push_back(c);
+            length.push_back(l);
+            c = s[i] - '0';
+            l = 0;
+        }
+        l++;
     }
+    if(color[color.size() - 1] == 0){
+        color.push_back(1);
+        length.push_back(0);
+    }
+    int mx = 1 + 2 * K;
+    // cout << "mx : " << mx << endl;
+    // for(int i = 0; i < color.size(); i++){
+    //     cout << color[i] << " : " << length[i] << endl;
+    // }
+    int ans = 0;
+    for(int l = 0, r = 0, sum = length[0]; l < length.size(); ){
+        while(r + 1 < length.size() && r + 1 - l + 1 <= mx){
+            r++;
+            sum+=length[r];
+        }
+        ans = max(ans, sum);
+        sum -= length[l];
+        l++;
+        sum -= length[l];
+        l++;
+    }
+
+    cout << ans << endl;
 
     return 0;
 }

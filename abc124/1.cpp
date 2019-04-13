@@ -4,13 +4,26 @@ typedef long long ll;
 
 int main(){
     
-    int a, b, c, d, e, f;
-    cin >> a >> b >> c >> d >> e >> f;
-    if(e - a > f){
-        cout << ":(" << endl;
-        return 0;
+    int A, B;
+    int ans = 0;
+    cin >> A >> B;
+    if(A > B){
+        ans += A;
+        A--;
     }
-    cout << "Yay!" << endl;
+    else{
+        ans += B;
+        B--;
+    }
+    if(A > B){
+        ans += A;
+        A--;
+    }
+    else{
+        ans += B;
+        B--;
+    }
+    cout << ans << endl;
 
     return 0;
 }
