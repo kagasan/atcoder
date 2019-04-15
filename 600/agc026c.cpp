@@ -7,6 +7,7 @@ typedef long long ll;
 
 ll N;
 ll rnd[18][256];
+map<ll, string>hoge;
 
 void calc(const string &str, map<ll, ll>&m){
     for(ll i = 0; i < (1 << N); i++){
@@ -22,6 +23,19 @@ void calc(const string &str, map<ll, ll>&m){
             }
         }
         m[hs]++;
+        string tmp = "";
+        for(ll j = 0, k = 1; j < N; j++, k <<= 1){
+            if(i & k){
+                tmp += str[j];
+            }
+        }
+        for(ll j = N - 1, k = (1 << (N - 1)); j >= 0; j--, k >>= 1){
+            if((i & k) == 0){
+                tmp += str[j];
+            }
+        }
+        
+        hoge[hs] = tmp;
     }
 }
 
@@ -52,6 +66,7 @@ int main(){
         ll key = (*it).first;
         ll value = (*it).second;
         ans += m2[key] * value;
+        cout << hoge[key] << " : " << m2[key] << " * " << value << " = " << m2[key] * value << endl;
     }
     cout << ans << endl;
 
