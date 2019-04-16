@@ -1,41 +1,27 @@
-#include <iostream>
-#include <string>
+#include "bits/stdc++.h"
 #include <random>
-#include <map>
 using namespace std;
 typedef long long ll;
 
 ll N;
 ll rnd[18][256];
-map<ll, string>hoge;
 
-void calc(const string &str, map<ll, ll>&m){
+void func(string s, vector<map<ll, ll> >&v){
     for(ll i = 0; i < (1 << N); i++){
         ll hs = 0;
+        int cnt = 0;
         for(ll j = 0, k = 1, front = 0, back = N - 1; j < N; j++, k <<= 1){
             if(i & k){
-                hs ^= rnd[front][str[j]];
+                hs ^= rnd[front][s[j]];
                 front++;
+                cnt++;
             }
             else{
-                hs ^= rnd[back][str[j]];
+                hs ^= rnd[back][s[j]];
                 back--;
             }
         }
-        m[hs]++;
-        string tmp = "";
-        for(ll j = 0, k = 1; j < N; j++, k <<= 1){
-            if(i & k){
-                tmp += str[j];
-            }
-        }
-        for(ll j = N - 1, k = (1 << (N - 1)); j >= 0; j--, k >>= 1){
-            if((i & k) == 0){
-                tmp += str[j];
-            }
-        }
-        
-        hoge[hs] = tmp;
+        v[cnt][hs]++;
     }
 }
 
@@ -57,16 +43,19 @@ int main(){
     string s2 = s.substr(N, N);
     reverse(s2.begin(), s2.end());
     
-    map<ll, ll>m1, m2;
-    calc(s1, m1);
-    calc(s2, m2);
+    vector<map<ll, ll> >v1(N + 1);
+    vector<map<ll, ll> >v2(N + 1);
+
+    func(s1, v1);
+    func(s2, v2);
 
     ll ans = 0;
-    for(map<ll, ll>::iterator it = m1.begin(); it != m1.end(); it++){
-        ll key = (*it).first;
-        ll value = (*it).second;
-        ans += m2[key] * value;
-        cout << hoge[key] << " : " << m2[key] << " * " << value << " = " << m2[key] * value << endl;
+    for(int a = 0; a <= N; a++){
+        for(map<ll, ll>::iterator it = v1[a].begin(); it != v1[a].end(); it++){
+            ll key = (*it).first;
+            ll value = (*it).second;
+            ans += v2[a][key] * value;
+        }
     }
     cout << ans << endl;
 
