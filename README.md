@@ -16,7 +16,7 @@ int main(){
 # string
 ## vectorみたいに宣言
 ```cpp
-string s(10, '0');
+string s(10, '0');
 cout << s << endl;
 // 0000000000
 ```
@@ -46,7 +46,7 @@ cout << s << endl;
 ## 宣言
 要素数, 初期値
 ```cpp
-vector<int>vec(3, 0);
+vector<int>vec(3, 0);
 vec[1] = 1;
 vec.push_back(-1);
 for(int i = 0; i < vec.size(); i++){
@@ -83,7 +83,7 @@ for(int i = 0; i < v.size(); i++)cout << v[i];
 ```
 
 # set
-重複した要素を許さないデータ構造  
+重複した要素を許さないデータ構造  
 内部ではソートされて保存される
 ## 宣言
 ## 挿入
