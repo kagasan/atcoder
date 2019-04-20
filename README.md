@@ -82,6 +82,42 @@ for(int i = 0; i < v.size(); i++)cout << v[i];
 // 4321
 ```
 
+## 順列全列挙
+sortしてから使う
+```cpp
+vector<int>v;
+v.push_back(2);
+v.push_back(0);
+v.push_back(1);
+sort(v.begin(), v.end());
+do{
+    for(int i = 0; i < v.size(); i++){
+        cout << v[i];
+    }
+    cout << endl;
+}while(next_permutation(v.begin(), v.end()));
+// 012
+// 021
+// 102
+// 120
+// 201
+// 210
+```
+stringでも可
+```cpp
+string s = "bca";
+sort(s.begin(), s.end());
+do{
+    cout << s << endl;
+}while(next_permutation(s.begin(), s.end()));
+// abc
+// acb
+// bac
+// bca
+// cab
+// cba
+```
+
 # set
 重複した要素を許さないデータ構造  
 内部ではソートされて保存される
