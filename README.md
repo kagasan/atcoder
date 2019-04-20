@@ -28,14 +28,14 @@ string s2 = s1.substr(2, 5);
 cout << s2 << endl;
 // 23456
 ```
-## reverse
+## 反転
 ```cpp
 string s = "01234";
 reverse(s.begin(), s.end());
 cout << s << endl;
 // 43210
 ```
-## to_string
+## intをstringに
 ```cpp
 string s = to_string(-100);
 cout << s << endl;
@@ -85,10 +85,55 @@ for(int i = 0; i < v.size(); i++)cout << v[i];
 # set
 重複した要素を許さないデータ構造  
 内部ではソートされて保存される
-## 宣言
-## 挿入
-## 検索
+## 宣言,挿入,検索,削除
+```cpp
+set<int>S;
+S.insert(7);
+S.insert(6);
+S.insert(5);
+S.insert(6);
+set<int>::iterator it;
+for(it = S.begin(); it != S.end(); it++){
+    cout << *it << endl;
+}
+// 5
+// 6
+// 7
+
+S.insert(9);
+
+// 要素の検索
+if(S.find(9) != S.end())cout << "found" << endl;
+else cout << "not found" << endl;
+// found
+
+// 要素の削除
+S.erase(9);
+
+if(S.find(9) != S.end())cout << "found" << endl;
+else cout << "not found" << endl;
+// not found
+```
 ## 以上の最小
+```cpp
+cout << *S.lower_bound(6) << endl;
+// 6
+```
 ## 以下の最大
+```cpp
+it = S.lower_bound(6);
+if(*it > 6)it--;
+cout << *it << endl;
+// 6
+```
 ## 超過の最小
+```cpp
+cout << *S.upper_bound(6) << endl;
+// 7
+```
 ## 未満の最大
+```cpp
+it = S.lower_bound(6);
+it--;
+cout << *it << endl;
+```
