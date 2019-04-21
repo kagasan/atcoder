@@ -174,3 +174,82 @@ it--;
 cout << *it << endl;
 // 5
 ```
+
+# BIT
+1-indexedなデータ構造。  
+sum(i)で区間[1, i]の和を計算。  
+add(i, x)で足し引きもできる。
+```cpp
+// 1-indexed BIT
+class BIT{
+    public:
+    vector<ll>bit;
+    int N;
+    void init(int n){
+        N = n;
+        bit = vector<ll>(N, 0);
+    }
+    // [1, n] = {}
+    BIT(int n = 0){
+        init(n);
+    }
+    // sum [1, i]
+    ll sum(int i){
+        ll s = 0;
+        while(i > 0){
+            s += bit[i];
+            i -= i & -i;
+        }
+        return s;
+    }
+    void add(int i, ll x){
+        if(i == 0)return;
+        while(i <= N){
+            bit[i] += x;
+            i += i & -i;
+        }
+    }
+};
+```
+
+# RMQ
+0-indexedなデータ構造。  
+update(k, x)でk番目の要素を更新。  
+query(a, b)で区間[a, b)の最小を取得。
+```cpp
+//0-indexed RMQ
+class RMQ{
+    public:
+    int N;
+    ll MAX;
+    vector<ll>dat;
+    RMQ(int n, ll x){
+        N = 1;
+        while(N < n)N *= 2;
+        dat = vector<ll>(2 * N);
+        for(int i = 0; i < 2 * N - 1; i++)dat[i] = x;
+        MAX = (1ll) << 62;
+    }
+    void update(int k, ll x){
+        k += N - 1;
+        dat[k] = x;
+        while(k > 0){
+            k = (k - 1) / 2;
+            dat[k] = min(dat[k * 2 + 1], dat[k * 2 + 2]);
+        }
+    }
+    // [a, b)
+    ll query(int a, int b, int k, int l, int r){
+        if(r <= a || b <= l)return MAX;
+        if(a <= l && r <= b)return dat[k];
+        else{
+            ll vl = query(a, b, k * 2 + 1, l, (l + r) / 2);
+            ll vr = query(a, b, k * 2 + 2, (l + r) / 2, r);
+            return min(vl, vr);
+        }
+    }
+    ll query(int a, int b){
+        return query(a, b, 0, 0, N);
+    }
+};
+```
