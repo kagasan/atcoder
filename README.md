@@ -41,6 +41,19 @@ string s = to_string(-100);
 cout << s << endl;
 // -100
 ```
+**検索置換**
+```cpp
+string replace(string s1, string s2, string s3){
+    int pos = s1.find(s2);
+    if(pos == string::npos){
+        return s1;
+    }
+    s1.replace(pos, s2.size(), s3);
+    return s1;
+}
+// cout << replace("abcabc", "bc", "d") << endl;
+// adabc
+```
 
 # vector
 **宣言**  
@@ -252,4 +265,28 @@ class RMQ{
         return query(a, b, 0, 0, N);
     }
 };
+```
+# GCD(最大公約数),LCM(最小公倍数)
+```cpp
+ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
+ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
+```
+# 逆元
+```cpp
+ll extgcd(ll a, ll b, ll &x, ll &y){
+    ll d = a;
+    if(b){
+        d = extgcd(b,a%b,y,x);
+        y -= (a/b) * x;
+    }else{
+        x = 1;
+        y = 0;
+    }
+    return d;
+}
+ll mod_inverse(ll a, ll m){
+    ll x, y;
+    extgcd(a, m, x, y);
+    return (m + x % m) % m;
+}
 ```
