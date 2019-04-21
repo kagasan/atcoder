@@ -187,7 +187,37 @@ it--;
 cout << *it << endl;
 // 5
 ```
-
+# priority_queue
+降順
+```cpp
+priority_queue<int>Q;
+Q.push(3);
+Q.push(1);
+Q.push(4);
+while(!Q.empty()){
+    int p = Q.top();
+    Q.pop();
+    cout << p << endl;
+}
+// 4
+// 3
+// 1
+```
+昇順
+```cpp
+priority_queue<int, vector<int>, greater<int> >Q;
+Q.push(3);
+Q.push(1);
+Q.push(4);
+while(!Q.empty()){
+    int p = Q.top();
+    Q.pop();
+    cout << p << endl;
+}
+// 1
+// 3
+// 4
+```
 # BIT
 1-indexedなデータ構造。  
 sum(i)で区間[1, i]の和を計算。  
