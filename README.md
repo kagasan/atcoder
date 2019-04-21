@@ -14,13 +14,13 @@ int main(){
 ```
 
 # string
-## vectorみたいに宣言
+**vectorみたいに宣言**
 ```cpp
 string s(10, '0');
 cout << s << endl;
 // 0000000000
 ```
-## 一部だけ取り出す
+**一部だけ取り出す**
 i番目からn文字
 ```cpp
 string s1 = "0123456789";
@@ -28,14 +28,14 @@ string s2 = s1.substr(2, 5);
 cout << s2 << endl;
 // 23456
 ```
-## 反転
+**反転**
 ```cpp
 string s = "01234";
 reverse(s.begin(), s.end());
 cout << s << endl;
 // 43210
 ```
-## intをstringに
+**intをstringに**
 ```cpp
 string s = to_string(-100);
 cout << s << endl;
@@ -43,8 +43,8 @@ cout << s << endl;
 ```
 
 # vector
-## 宣言
-要素数, 初期値
+**宣言**  
+vector<T>(要素数, 初期値)
 ```cpp
 vector<int>vec(3, 0);
 vec[1] = 1;
@@ -58,7 +58,7 @@ for(int i = 0; i < vec.size(); i++){
 // -1
 ```
 
-## sort
+**sort**  
 昇順
 ```cpp
 vector<int>v;
@@ -82,7 +82,7 @@ for(int i = 0; i < v.size(); i++)cout << v[i];
 // 4321
 ```
 
-## 順列全列挙
+**順列全列挙**  
 sortしてから使う
 ```cpp
 vector<int>v;
@@ -121,7 +121,7 @@ do{
 # set
 重複した要素を許さないデータ構造  
 内部ではソートされて保存される
-## 宣言,挿入,検索,削除
+**宣言,挿入,検索,削除**
 ```cpp
 set<int>S;
 S.insert(7);
@@ -150,24 +150,24 @@ if(S.find(9) != S.end())cout << "found" << endl;
 else cout << "not found" << endl;
 // not found
 ```
-## 以上の最小
+**以上の最小**
 ```cpp
 cout << *S.lower_bound(6) << endl;
 // 6
 ```
-## 以下の最大
+**以下の最大**
 ```cpp
 it = S.lower_bound(6);
 if(*it > 6)it--;
 cout << *it << endl;
 // 6
 ```
-## 超過の最小
+**超過の最小**
 ```cpp
 cout << *S.upper_bound(6) << endl;
 // 7
 ```
-## 未満の最大
+**未満の最大**
 ```cpp
 it = S.lower_bound(6);
 it--;
