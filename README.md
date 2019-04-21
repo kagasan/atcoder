@@ -309,3 +309,48 @@ for(int i = 0; i < N; i++){
     }
 }
 ```
+# UnionFind
+多分0-indexed
+```cpp
+struct UF{
+    int N;
+    vector<int>rank;
+    vector<int>parent;
+    vector<ll>sz;
+    void init(int n){
+        N = n;
+        rank = std::vector<int>(N, 0);
+        sz = std::vector<ll>(N, 1);
+        parent = std::vector<int>(N);
+        for(int i = 0; i < N; i++)parent[i] = i;
+    }
+    UF(int n = 0){
+        if(n)init(n);
+    }
+    int find(int x){
+        if(parent[x] == x)return x;
+        return parent[x] = find(parent[x]);
+    }
+    ll unite(int x, int y){
+        x = find(x);
+        y = find(y);
+        if(x == y)return 0;
+        
+        ll tmp = sz[x] * sz[y];
+        ll tmp2 = sz[x] + sz[y];
+        sz[x] = tmp2;
+        sz[y] = tmp2;
+        if(rank[x] < rank[y]){
+            parent[x] = y;
+        }
+        else{
+            parent[y] = x;
+            if(rank[x] == rank[y])rank[x]++;
+        }
+        return tmp;
+    }
+    bool same(int x, int y){
+        return find(x) == find(y);
+    }
+};
+```
