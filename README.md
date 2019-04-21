@@ -290,3 +290,22 @@ ll mod_inverse(ll a, ll m){
     return (m + x % m) % m;
 }
 ```
+# ワーシャルフロイド
+そのうちclassにする。
+```cpp
+int cost[100][100];
+
+for(int i = 0; i < 100; i++){
+    for(int j = 0; j < 100; j++){
+        cost[i][j] = 200000;
+    }
+}
+
+for(int i = 0; i < N; i++){
+    for(int j = 0; j < N; j++){
+        for(int k = 0; k < N; k++){
+            cost[j][k] = min(cost[j][k], cost[j][i] + cost[i][k]);
+        }
+    }
+}
+```
