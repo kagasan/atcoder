@@ -386,3 +386,19 @@ struct UF{
     }
 };
 ```
+# 累積和
+```cpp
+vector<ll>vec;
+vec = vector<ll>(N + 1, 0);
+
+void imosAct(vector<ll> &VEC){
+    for(int i = 1; i < VEC.size(); i++){
+        VEC[i] += VEC[i - 1];
+    }
+}
+
+// sum of [a, b]
+ll imosGet(const vector<ll> &VEC, int a, int b){
+    return VEC[b] - VEC[a - 1];
+}
+```
