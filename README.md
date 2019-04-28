@@ -387,10 +387,9 @@ struct UF{
 };
 ```
 # 累積和
+a番目からb番目までの和が求まる
 ```cpp
-vector<ll>vec;
-vec = vector<ll>(N + 1, 0);
-
+// 1-indexed imos
 void imosAct(vector<ll> &VEC){
     for(int i = 1; i < VEC.size(); i++){
         VEC[i] += VEC[i - 1];
@@ -400,5 +399,25 @@ void imosAct(vector<ll> &VEC){
 // sum of [a, b]
 ll imosGet(const vector<ll> &VEC, int a, int b){
     return VEC[b] - VEC[a - 1];
+}
+```
+```cpp
+// 2d 1-indexed imos
+void imosAct2d(vector<vector<ll> > &VEC){
+    for(int y = 1; y < VEC.size(); y++){
+        for(int x = 1; x < VEC[y].size(); x++){
+            VEC[y][x] += VEC[y][x - 1];
+        }
+    }
+    for(int x = 1; x < VEC[0].size(); x++){
+        for(int y = 1; y < VEC.size(); y++){
+            VEC[y][x] += VEC[y - 1][x];
+        }
+    }
+}
+
+// sum of [[ax, ay], [bx, by]]
+ll imosGet2d(const vector<vector<ll> > &VEC, int ax, int ay, int bx, int by){
+    return VEC[by][bx] - VEC[by][ax - 1] - VEC[ay - 1][bx] + VEC[ay - 1][ax - 1];
 }
 ```
