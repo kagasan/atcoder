@@ -59,7 +59,9 @@ string replace(string s1, string s2, string s3){
 
 # vector
 **宣言**  
-vector<T>(要素数, 初期値)
+vector<T>変数名(要素数, 初期値);  
+もしくは  
+vector<T>変数名 = {a, b, c, ...};
 ```cpp
 vector<int>vec(3, 0);
 vec[1] = 1;
@@ -220,6 +222,31 @@ while(!Q.empty()){
 // 3
 // 4
 ```
+# deque
+両端から操作できる
+```cpp
+deque<int> dq = {3, 1, 4};
+// dq = deque<int>(3, 0);
+// のようにもかける
+for(int i = 0; i < dq.size(); i++){
+    cout << dq[i] << endl;
+}
+// 3
+// 1
+// 4
+
+dq.pop_front();
+dq.pop_back();
+dq.push_front(0);
+dq.push_back(2);
+for(int i = 0; i < dq.size(); i++){
+    cout << dq[i] << endl;
+}
+// 0
+// 1
+// 2
+```
+
 # BIT
 1-indexedなデータ構造。  
 sum(i)で区間[1, i]の和を計算。  
