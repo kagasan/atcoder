@@ -132,7 +132,22 @@ do{
 // cab
 // cba
 ```
-
+# stack
+これいる？
+```cpp
+stack<int>S;
+for(int i = 0; i < 3; i++){
+    S.push(i);
+}
+while(!S.empty()){
+    int tmp = S.top();
+    S.pop();
+    cout << tmp << endl;
+}
+// 2
+// 1
+// 0
+```
 # set
 重複した要素を許さないデータ構造  
 内部ではソートされて保存される
