@@ -463,3 +463,71 @@ ll imosGet2d(const vector<vector<ll> > &VEC, int ax, int ay, int bx, int by){
     return VEC[by][bx] - VEC[by][ax - 1] - VEC[ay - 1][bx] + VEC[ay - 1][ax - 1];
 }
 ```
+# 組み合わせの数
+- 並び替え
+  - N種の要素を並び替えてできる通りの数
+  - 階乗, factorial
+  - N! = N * (N - 1) * ... * 2 * 1
+- 順列
+  - N種の要素からk個取り出して並べる通りの数
+  - nPk = n! / (n - k)!
+- 組合せ
+  - N種の要素からk個を選ぶ通りの数
+  - nCk = nPk / k! = n! / (n - k)! / k!
+- 重複組合せ  
+  - N種の要素からk個を選ぶ通りの数(重複して良い)  
+  - nHk = n+k-1Ck = (n + k - 1)! / k! / (n - 1)!
+
+拡張ユークリッドの互除法による逆元(modが素数でなくてもいい)と，modを指定した累乗関数もセット．
+```cpp
+class Combination{
+    private:
+    vector<ll>fact, inv;
+    ll mod;
+    
+    public:
+    ll modpow(ll x, ll n){
+        ll res = 1;
+        while(n > 0){
+            if(n & 1)res = res * x % mod;
+            x = x * x % mod;
+            n >>= 1;
+        }
+        return res;
+    }
+    ll modinv(ll x){
+        ll y = mod, u = 1, v = 0;
+        while(y){
+            ll t = x / y;
+            x -= t * y; swap(x, y);
+            u -= t * v; swap(u, v);
+        }
+        u %= mod;
+        if(u < 0)u += mod;
+        return u;
+    }
+    Combination(ll num, ll _mod = 1000000007){
+        fact = vector<ll>(2 * num + 10);
+        inv = vector<ll>(2 * num + 10);
+        mod = _mod;
+        fact[0] = 1;
+        inv[0] = modinv(fact[0]);
+        for(ll i = 1; i < fact.size(); i++){
+            fact[i] = fact[i - 1] * i % mod;
+            inv[i] = modinv(fact[i]);
+        }
+    }
+    ll factrial(ll n){
+        return fact[n];
+    }
+    ll nPk(ll n, ll k){
+        return fact[n] * inv[n - k] % mod;
+    }
+    ll nCk(ll n, ll k){
+        return nPk(n, k) * inv[k] % mod;
+    }
+    ll nHk(ll n, ll k){
+        return nCk(n+k-1, k);
+    }
+};
+```
