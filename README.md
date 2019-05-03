@@ -78,22 +78,14 @@ for(int i = 0; i < vec.size(); i++){
 **sort**  
 昇順
 ```cpp
-vector<int>v;
-v.push_back(2);
-v.push_back(3);
-v.push_back(1);
-v.push_back(4);
+vector<int>v = {2, 3, 1, 4};
 sort(v.begin(), v.end());
 for(int i = 0; i < v.size(); i++)cout << v[i];
 // 1234
 ```
 降順
 ```cpp
-vector<int>v;
-v.push_back(2);
-v.push_back(3);
-v.push_back(1);
-v.push_back(4);
+vector<int>v = {2, 3, 1, 4};
 sort(v.begin(), v.end(), greater<int>());
 for(int i = 0; i < v.size(); i++)cout << v[i];
 // 4321
