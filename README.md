@@ -523,3 +523,43 @@ class Combination{
     }
 };
 ```
+
+# 木の直径
+```cpp
+class Tree{
+    public:
+    vector<vector<int> >edge;
+    vector<int>depth;
+    Tree(int num){
+        edge = vector<vector<int> >(num);
+        depth = vector<int>(num, 0);
+    }
+    void add(int a, int b){
+        edge[a].push_back(b);
+        edge[b].push_back(a);
+    }
+    void dfs(int x = 0, int from = -1, int dep = 1){
+        depth[x] = dep;
+        for(int i = 0; i < edge[x].size(); i++){
+            int nxt = edge[x][i];
+            if(from == nxt)continue;
+            dfs(nxt, x, dep + 1);
+        }
+    }
+    int diameter(){
+        dfs();
+        int mxIdx = 0;
+        for(int i = 0; i < depth.size(); i++){
+            if(depth[mxIdx] < depth[i]){
+                mxIdx = i;
+            }
+        }
+        dfs(mxIdx);
+        int mxDepth = 0;
+        for(int i = 0; i < depth.size(); i++){
+            mxDepth = max(mxDepth, depth[i]);
+        }
+        return mxDepth;
+    }
+};
+```
