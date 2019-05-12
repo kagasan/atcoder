@@ -563,3 +563,28 @@ class Tree{
     }
 };
 ```
+
+# エラトステネスの篩
+```cpp
+class Era{
+    public:
+    vector<int>prime;
+    vector<int>imos;
+    Era(int num = 0){
+        if(num < 2)return;
+        prime = vector<int>(num + 1, 1);
+        prime[0] = 0;
+        prime[1] = 0;
+        for(int i = 2; i * i <= num; i++){
+            if(prime[i] == 0)continue;
+            for(int j = i + i; j <= num; j += i){
+                prime[j] = 0;
+            }
+        }
+        imos = vector<int>(num + 1, 0);
+        for(int i = 1; i <= num; i++){
+            imos[i] = imos[i - 1] + prime[i];
+        }
+    }
+};
+```
