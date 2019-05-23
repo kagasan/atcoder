@@ -588,3 +588,37 @@ class Era{
     }
 };
 ```
+
+# 落下
+ぷよぷよ的な
+```cpp
+string mp[5] = {
+    ".A.B.",
+    "C..DE",
+    "..FG.",
+    "H.IJK",
+    "...LM"
+};
+for(int x = 0; x < 5; x++){
+    queue<char>Q;
+    for(int y = 4; y >= 0; y--){
+        if(mp[y][x] != '.')Q.push(mp[y][x]);
+        mp[y][x] = '.';
+    }
+    for(int y = 4; !Q.empty(); y--){
+        mp[y][x] = Q.front();
+        Q.pop();
+    }
+}
+for(int y = 0; y < 5; y++){
+    for(int x = 0; x < 5; x++){
+        cout << mp[y][x];
+    }
+    cout << endl;
+}
+// ...B.
+// ...D.
+// ...GE
+// C.FJK
+// HAILM
+```
