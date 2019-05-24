@@ -622,3 +622,7 @@ for(int y = 0; y < 5; y++){
 // C.FJK
 // HAILM
 ```
+
+# xorの仕様
+
+
