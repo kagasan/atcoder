@@ -2,6 +2,8 @@
 using namespace std;
 typedef long long ll;
 
+const ll MOD = 1000000007;
+
 class Combination{
     private:
     vector<ll>fact, inv;
@@ -57,7 +59,22 @@ int main(){
 
     ll N, M, K;
     cin >> N >> M >> K;
-    
-
+    Combination cmb(N * M);
+    ll ans = 0;
+    for(ll x = 1; x < M; x++){
+        ll tmp = x * (M - x) % MOD;
+        tmp = tmp * N % MOD;
+        tmp = tmp * N % MOD;
+        tmp = tmp * cmb.nCk(N * M - 2, K - 2) % MOD;
+        ans = (ans + tmp) % MOD;
+    }
+    for(ll y = 1; y < N; y++){
+        ll tmp = y * (N - y) % MOD;
+        tmp = tmp * M % MOD;
+        tmp = tmp * M % MOD;
+        tmp = tmp * cmb.nCk(N * M - 2, K - 2) % MOD;
+        ans = (ans + tmp) % MOD;
+    }
+    cout << ans << endl;
     return 0;
 }
