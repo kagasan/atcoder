@@ -5,6 +5,9 @@
         "iosfwd": "cpp",
         "iterator": "cpp",
         "vector": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
     }
 }

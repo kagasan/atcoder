@@ -623,6 +623,43 @@ for(int y = 0; y < 5; y++){
 // HAILM
 ```
 
-# xorの仕様
+# classのsort
+https://atcoder.jp/contests/abc128/tasks/abc128_b
+```cpp
+class hoge{
+    public:
+    string s;
+    int p;
+    int idx;
+    bool operator < (const hoge &h)const{
+        if(s != h.s)return s < h.s;
+        return -p < -h.p;
+    }
+};
+// 昇順sort
+vector<hoge>v(N);
+sort(v.begin(), v.end());
+// 降順priority_queue
+priority_queue<hoge>Q;
+```
+greater
+```cpp
+class hoge{
+    public:
+    string s;
+    int p;
+    int idx;
+    bool operator > (const hoge &h)const{
+        if(s != h.s)return s > h.s;
+        return p < h.p;
+    }
+};
+// 降順sort
+vector<hoge>v(N);
+sort(v.begin(), v.end(), greater<hoge>());
+// 昇順priority_queue
+priority_queue<hoge, vector<hoge>, greater<hoge> >Q;
+```
+
 
 
