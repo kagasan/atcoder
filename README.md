@@ -661,5 +661,6 @@ sort(v.begin(), v.end(), greater<hoge>());
 priority_queue<hoge, vector<hoge>, greater<hoge> >Q;
 ```
 
+# bitの扱い
 
 
