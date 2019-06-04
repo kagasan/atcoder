@@ -662,5 +662,10 @@ priority_queue<hoge, vector<hoge>, greater<hoge> >Q;
 ```
 
 # bitの扱い
-
+```cpp
+int N = 4;
+for(int i = 0; i < (1 << N); i++){
+    //4bit分の全列挙
+}
+```
 
