@@ -670,4 +670,21 @@ for(int i = 0; i < (1 << N); i++){
 ```
 
 # 中央値
-
+```cpp
+// Left.top() == Right.top()の場合は中央値は1つ
+// Left.top() < Right.top()の場合はその区間(もしくは2つのどちらか)
+priority_queue<ll>Left;
+priority_queue<ll, vector<ll>, greater<ll> >Right;
+void push(ll x){
+    Left.push(x);
+    Right.push(x);
+    ll l = Left.top();
+    ll r = Right.top();
+    if(l > r){
+        Left.pop();
+        Left.push(r);
+        Right.pop();
+        Right.push(l);
+    }
+}
+```
