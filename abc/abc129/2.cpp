@@ -1,25 +1,23 @@
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long ll;
-typedef pair<int, int>P;
-typedef pair<string, P>SP;
-
 
 int main(){
     
+    ll ans = 1145141919;
     ll N;
     cin >> N;
-    vector<SP>v(N);
-    for(ll i = 0; i < N; i++){
-        cin >> v[i].first;
-        cin >> v[i].second.first;
-        v[i].second.first *= -1;
-        v[i].second.second = i + 1;
+    vector<ll>vec(N, 0);
+    for(ll i = 0; i < N; i++)cin >> vec[i];
+    for(ll i = 0; i + 1 < N; i++){
+        ll a = 0, b = 0;
+        for(ll j = 0; j < N; j++){
+            if(j <= i)a += vec[j];
+            else b += vec[j];
+        }
+        ans = min(ans, abs(a - b));
     }
-    sort(v.begin(), v.end());
-    for(int i = 0; i < N; i++){
-        cout << v[i].second.second << endl;
-    }
+    cout << ans << endl;
 
     return 0;
 }
