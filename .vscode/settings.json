@@ -8,6 +8,9 @@
         "random": "cpp",
         "chrono": "cpp",
         "limits": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "__tree": "cpp",
+        "bitset": "cpp",
+        "set": "cpp"
     }
 }
