@@ -26,11 +26,6 @@ int main(){
                 }
                 S.insert(tmp);
             }
-            // if(ans == 100 && S.size() == N){
-            //     for(set<string>::iterator it = S.begin(); it != S.end(); it++){
-            //         cout << *it << endl;
-            //     }
-            // }
             if(S.size() == N)ans = min(ans, k);
         }
         if(ans == 100)cout << -1 << endl;
