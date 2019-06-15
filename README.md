@@ -688,3 +688,14 @@ void push(ll x){
     }
 }
 ```
+
+# random
+https://atcoder.jp/contests/abc110/submissions/5900173
+```cpp
+random_device rd;
+mt19937_64 mt(rd());
+vector<ll>hash(202020, 0);
+for(ll i = 0; i < 202020; i++){
+    hash[i] = mt();
+}
+```
