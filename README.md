@@ -688,6 +688,11 @@ void push(ll x){
     }
 }
 ```
+# 中央値の候補が多すぎるとき  
+「k以下の要素が過半数あるか？」で2分探索を行い,  
+「k以下の要素が過半数ある」かつ「k-1以下の要素は過半数ない」で、中央値がkだとわかる。
+
+
 
 # random
 https://atcoder.jp/contests/abc110/submissions/5900173
