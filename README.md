@@ -699,3 +699,29 @@ for(ll i = 0; i < 202020; i++){
     hash[i] = mt();
 }
 ```
+
+# rot
+```cpp
+// 回転は  
+xx = cos(rad) * x - sin(rad) * y;
+yy = sin(rad) * x + cos(rad) * y;
+// 特に
+rad = deg * pi / 180
+
+deg = 0
+xx = x
+yy = y
+
+deg = 90
+xx = -y
+yy = x
+
+deg = 180
+xx = -x
+yy = -y
+
+deg = 270
+xx = y
+yy = -x
+```
+
