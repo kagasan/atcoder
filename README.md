@@ -730,3 +730,83 @@ xx = y
 yy = -x
 ```
 
+# 二部マッチング
+```cpp
+
+// 0-indexed 2部マッチング
+class BM{
+public:
+	vector<vector<int> >G;
+	vector<int>match;
+	vector<int>used;
+	BM(int n){
+		G.resize(n);
+	}
+	void addEdge(int from, int to){
+		G[from].push_back(to);
+		G[to].push_back(from);
+	}
+	bool dfs(int v){
+		used[v] = 1;
+		for (int i = 0; i < G[v].size(); i++){
+			int u = G[v][i];
+			int w = match[u];
+			if (w < 0 || (!used[w] && dfs(w))){
+				match[v] = u;
+				match[u] = v;
+				return true;
+			}
+		}
+		return false;
+	}
+	int flow(){
+		int res = 0;
+		match.clear();
+		match.resize(G.size(), -1);
+		for (int v = 0; v < G.size(); v++){
+			if (match[v] < 0){
+				used.clear();
+				used.resize(G.size(), 0);
+				if (dfs(v)){
+					res++;
+				}
+			}
+		}
+		return res;
+	}
+};
+```
+
+# A以上B以下を数える
+```cpp
+
+//A以上B以下を数える
+class ABCount{
+    public:
+    vector<ll>v;
+    set<pair<ll, ll> >S;
+    ll makeFlg;
+    ll Inf;
+    ABCount(ll inf = 1145141919){
+        Inf = inf;
+        makeFlg = 0;
+    }
+    void push(ll a){
+        v.push_back(a);
+    }
+    void make(){
+        makeFlg = 1;
+        S.clear();
+        sort(v.begin(), v.end());
+        for(ll i = 0; i < v.size(); i++){
+            S.insert(pair<ll, ll>(v[i], i));
+        }
+        S.insert(pair<ll,ll>(Inf, v.size()));
+    }
+    ll count(ll a, ll b){
+        if(a > b)return 0;
+        if(makeFlg == 0)make();
+        return (*S.upper_bound(pair<ll,ll>(b, Inf))).second - (*S.lower_bound(pair<ll,ll>(a, 0))).second;
+    }
+};
+```
