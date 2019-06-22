@@ -357,7 +357,38 @@ ll mod_inverse(ll a, ll m){
 }
 ```
 # ワーシャルフロイド
-そのうちclassにする。
+```cpp
+class WF{
+	public:
+	ll N;
+	ll makeFlg;
+	vector<vector<ll> >cost;
+	WF(ll _N, ll INF = 1145141919){
+		N = _N + 1;
+		cost = vector<vector<ll> >(N, vector<ll>(N, INF));
+		makeFlg = 0;
+	}
+	void add(ll a, ll b, ll c){
+		cost[a][b] = min(cost[a][b], c);
+		makeFlg = 0;
+	}
+	void make(){
+		if(makeFlg)return;
+		makeFlg = 1;
+		for(ll i = 0; i < N; i++){
+			for(ll j = 0; j < N; j++){
+				for(ll k = 0; k < N; k++){
+					cost[j][k] = min(cost[j][k], cost[j][i] + cost[i][k]);
+				}
+			}
+		}
+	}
+	ll get(ll a, ll b){
+		if(makeFlg == 0)make();
+		return cost[a][b];
+	}
+};
+```
 ```cpp
 int cost[100][100];
 
