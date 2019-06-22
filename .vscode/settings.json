@@ -13,6 +13,8 @@
         "bitset": "cpp",
         "set": "cpp",
         "ostream": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
