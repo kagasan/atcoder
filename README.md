@@ -6,8 +6,8 @@
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long ll;
-void Yes(bool Yes){cout << (Yes ? "Yes" : "No") << endl;};
-void YES(bool YES){cout << (YES ? "YES" : "NO") << endl;};
+void Say(bool Yes){cout << (Yes ? "Yes" : "No") << endl;};
+void SAY(bool YES){cout << (YES ? "YES" : "NO") << endl;};
 
 int main(){
 
