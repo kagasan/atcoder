@@ -575,6 +575,7 @@ class Combination{
     ll mod;
     
     public:
+    // xのn乗
     ll modpow(ll x, ll n){
         ll res = 1;
         while(n > 0){
@@ -584,6 +585,7 @@ class Combination{
         }
         return res;
     }
+    // /x
     ll modinv(ll x){
         ll y = mod, u = 1, v = 0;
         while(y){
@@ -606,6 +608,7 @@ class Combination{
             inv[i] = modinv(fact[i]);
         }
     }
+    // n!(事前に設定した範囲)
     ll factrial(ll n){
         return fact[n];
     }
