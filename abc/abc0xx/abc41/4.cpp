@@ -17,7 +17,6 @@ int main(){
     queue<ll>Q;
     Q.push(0);
     dp[0] = 1;
-
     while(!Q.empty()){
         ll state = Q.front();
         Q.pop();
