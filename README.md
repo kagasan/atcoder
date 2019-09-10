@@ -1,17 +1,70 @@
 # コピペで使えるテク
 
 
-# テンプレ
+# template
 ```cpp
 #include "bits/stdc++.h"
 using namespace std;
 typedef long long ll;
-void Say(bool say, string a = "Yes", string b = "No"){cout << (say ? a : b) << endl;};
+typedef pair<ll, ll> P;
+#define rep(i, n) for(int (i) = 0; (i) < (n); (i)++)
+const ll INF = 1145141919;
+const ll MOD = 1000000007;
+template<class T> void chmax(T &a, const T &b){if(a < b){a = b;}}
+template<class T> void chmin(T &a, const T &b){if(a > b){a = b;}}
 
 int main(){
 
+    
+
     return 0;
 }
+```
+
+# set(関数)
+```cpp
+template<class T> T ika_max(set<T> &S, const T &x){
+    typename set<T>::iterator it = S.lower_bound(x);
+    if(*it > x)it--;
+    return *it;
+}
+template<class T> T ijo_min(set<T> &S, const T &x){
+    return *S.lower_bound(x);
+}
+template<class T> T choka_min(set<T> &S, const T &x){
+    return *S.upper_bound(x);
+}
+template<class T> T miman_max(set<T> &S, const T &x){
+    typename set<T>::iterator it = S.lower_bound(x);
+    it--;
+    return *it;
+}
+
+set<ll>S;
+S.insert(5);
+S.erase(5);
+if(S.find(9) == S.end())cout << "not found" << endl;
+```
+
+# sort, priority_queue
+```cpp
+// vector/昇順
+sort(v.begin(), v.end());
+
+// vector/降順
+sort(v.begin(), v.end(), greater<int>());
+
+// priority_queue/昇順
+priority_queue<int, vector<int>, greater<int> >Q;
+
+// priority_queue/降順
+priority_queue<int>Q;
+```
+
+# GCD(最大公約数),LCM(最小公倍数)
+```cpp
+ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
+ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
 ```
 
 # string
@@ -331,11 +384,7 @@ class RMQ{
     }
 };
 ```
-# GCD(最大公約数),LCM(最小公倍数)
-```cpp
-ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
-ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
-```
+
 # 逆元
 ```cpp
 ll extgcd(ll a, ll b, ll &x, ll &y){
