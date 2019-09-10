@@ -25,7 +25,8 @@ int main(){
 ```cpp
 template<class T> T ika_max(set<T> &S, const T &x){
     typename set<T>::iterator it = S.lower_bound(x);
-    if(*it > x)it--;
+    if(it == S.end())it--;
+    else if(*it > x)it--;
     return *it;
 }
 template<class T> T ijo_min(set<T> &S, const T &x){
