@@ -98,6 +98,14 @@ cout << s << endl;
 ```
 **検索置換**
 ```cpp
+bool replace(string &s1, const string &s2, const string &s3){
+    int pos = s1.find(s2);
+    if(pos == string::npos)return false;
+    s1.replace(pos, s2.size(), s3);
+    return true;
+}
+```
+```cpp
 string replace(string s1, string s2, string s3){
     int pos = s1.find(s2);
     if(pos == string::npos){
