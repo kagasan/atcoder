@@ -355,6 +355,49 @@ class BIT{
 };
 ```
 
+# 2d-BIT
+1-indexedな2次元BIT.  
+1点に足すのと，区間和をlogで行う．
+```cpp
+// 1-indexed 2d BIT
+class BIT2{
+    public:
+    ll H, W;
+    vector<vector<ll> >bit;
+    BIT2(ll _H, ll _W){
+        H = _H + 5;
+        W = _W + 5;
+        bit.resize(_H + 10, vector<ll>(_W + 10, 0));
+    }
+    void add_point(ll x, ll y, ll v){
+        for(ll Y = y; Y <= H; Y += Y & -Y){
+            for(ll X = x; X <= W; X += X & -X){        
+                bit[Y][X] += v;
+            }
+        }
+    }
+    ll get_sum(ll x, ll y){
+        if(x <= 0 || y <= 0)return 0;
+        if(x > W || y > H)return 0;
+        ll sum = 0;
+        for(ll Y = y; Y > 0; Y -= Y & -Y){
+            for(ll X = x; X > 0; X -= X & -X){
+                sum += bit[Y][X];
+            }
+        }
+        return sum;
+    }
+    ll get_sum(ll x1, ll y1, ll x2, ll y2){
+        ll tmp = 0;
+        tmp += get_sum(x2, y2);
+        tmp -= get_sum(x2, y1 - 1);
+        tmp -= get_sum(x1 - 1, y2);
+        tmp += get_sum(x1 - 1, y1 - 1);
+        return tmp;
+    }
+};
+```
+
 # RMQ
 0-indexedなデータ構造。  
 update(k, x)でk番目の要素を更新。  
