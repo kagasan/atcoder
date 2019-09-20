@@ -13,7 +13,13 @@ template<class T> void chmin(T &a, const T &b){if(a > b){a = b;}}
 
 int main(){
 
-    
+    string a, b;
+    cin >> a >> b;
+    while(a.size() < b.size())a = "0" + a;
+    while(a.size() > b.size())b = "0" + b;
+    if(a == b)cout << "EQUAL" << endl;
+    if(a < b)cout << "LESS" << endl;
+    if(a > b)cout << "GREATER" << endl;
 
     return 0;
 }
