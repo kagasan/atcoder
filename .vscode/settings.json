@@ -30,6 +30,7 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "unordered_set": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "ios": "cpp"
     }
 }
