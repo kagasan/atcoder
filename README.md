@@ -1016,6 +1016,46 @@ class ABCount{
 };
 ```
 
+# min_max_queue
+```cpp
+class MIN_MAX_QUEUE{
+    private:
+    unordered_map<ll, ll>cnt;
+    ll sz;
+    priority_queue<ll>mx_que;
+    priority_queue<ll, vector<ll>, greater<ll> >mn_que;
+
+    public:
+    MIN_MAX_QUEUE(){
+        sz = 0;
+    }
+    void push(ll x){
+        cnt[x]++;
+        sz++;
+        mx_que.push(x);
+        mn_que.push(x);
+    }
+    void pop(ll x){
+        if(cnt[x] <= 0)return;
+        sz--;
+        cnt[x]--;
+    }
+    ll size(){
+        return sz;
+    }
+    ll min(){
+        if(sz <= 0)return 0;
+        while(cnt[mn_que.top()] <= 0)mn_que.pop();
+        return mn_que.top();
+    }
+    ll max(){
+        if(sz <= 0)return 0;
+        while(cnt[mx_que.top()] <= 0)mx_que.pop();
+        return mx_que.top();
+    }
+};
+```
+
 # ダブリング
 ノードがN個あって、それぞれから有向辺が1本ずつ生えている。  
 このとき、以下のようなクエリをたくさん処理したい。
