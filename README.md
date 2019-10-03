@@ -795,6 +795,26 @@ class Era{
 };
 ```
 
+# 素因数分解
+```cpp
+map<ll, ll> prime_factorization(ll N){
+    map<ll, ll>cnt;
+    for(ll i = 2; i * i <= N; i++){
+        while(N % i == 0){
+            cnt[i]++;
+            N /= i;
+        }
+    }
+    if(N > 1)cnt[N]++;
+    return cnt;
+}
+```
+
+# 約数列挙
+```cpp
+
+```
+
 # 落下
 ぷよぷよ的な
 ```cpp
