@@ -812,7 +812,17 @@ map<ll, ll> prime_factorization(ll N){
 
 # 約数列挙
 ```cpp
-
+vector<ll> divisor(ll N){
+    vector<ll>v;
+    for(ll i = 1; i * i <= N; i++){
+        if(N % i == 0){
+            v.push_back(i);
+            if(i * i != N)v.push_back(N / i);
+        }
+    }
+    sort(v.begin(), v.end());
+    return v;
+}
 ```
 
 # 落下
