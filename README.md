@@ -66,6 +66,9 @@ priority_queue<int, vector<int>, greater<int> >Q;
 priority_queue<int>Q;
 ```
 
+# 累積和,BIT
+- [詳細](lib/imos_bit.md)
+
 # GCD(最大公約数),LCM(最小公倍数)
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
