@@ -82,6 +82,7 @@ class bit1d{
 
 # 2次元
 - 複雑だけどパワフル
+
 # 累積和
 ```cpp
 // 1indexed2dimention[]
