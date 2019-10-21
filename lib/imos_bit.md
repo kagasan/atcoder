@@ -55,8 +55,8 @@ class bit1d{
     vector<ll>v;
     ll num;
     bit1d(ll NUM = 0){
-        num = NUM + 10;
-        v = vector<ll>(num, 0);
+        num = NUM + 5;
+        v = vector<ll>(num + 5, 0);
     }
     void add(ll idx, ll x){
         if(idx == 0)return;
@@ -84,8 +84,79 @@ class bit1d{
 - 複雑だけどパワフル
 # 累積和
 ```cpp
+// 1indexed2dimention[]
+class imos2d{
+    public:
+    vector<vector<ll> >t, v;
+    ll h, w, flg;
+    imos2d(ll H = 0, ll W = 0){
+        flg = 0;
+        h = H + 10;
+        w = W + 10;
+        v = vector<vector<ll> >(h, vector<ll>(w, 0));
+        t = vector<vector<ll> >(h, vector<ll>(w, 0));
+    }
+    void add(ll x, ll y, ll val){
+        flg = 0;
+        t[y][x] += val;
+    }
+    void make(){
+        flg = 1;
+        for(ll y = 1; y < h; y++){
+            for(ll x = 1; x < w; x++){
+                v[y][x] = t[y][x] + v[y][x - 1];
+            }
+        }
+        for(ll x = 1; x < w; x++){
+            for(ll y = 1; y < h; y++){
+                v[y][x] += v[y - 1][x];
+            }
+        }
+    }
+    ll sum(ll x1, ll y1, ll x2, ll y2){
+        if(!flg)make();
+        return v[y2][x2] + v[y1 - 1][x1 - 1] - v[y2][x1 - 1] - v[y1 - 1][x2];
+    }
+};
 ```
 
 # bit
 ```cpp
+// 1indexed2dimention[]
+class bit2d{
+    public:
+    vector<vector<ll> >v;
+    ll h, w;
+    bit2d(ll H = 0, ll W = 0){
+        h = H + 5;
+        w = W + 5;
+        v = vector<vector<ll> >(h + 5, vector<ll>(w + 5, 0));
+    }
+    void add(ll x, ll y, ll val){
+        for(ll yy = y; yy <= h; yy += yy & -yy){
+            for(ll xx = x; xx <= w; xx += xx & -xx){
+                v[yy][xx] += val;
+            }
+        }
+    }
+    ll sum_of_1_to_idx(ll x, ll y){
+        if(x <= 0 || y <= 0)return 0;
+        if(x > w || y > h)return 0;
+        ll s = 0;
+        for(ll yy = y; yy > 0; yy -= yy & -yy){
+            for(ll xx = x; xx > 0; xx -= xx & -xx){
+                s += v[yy][xx];
+            }
+        }
+        return s;
+    }
+    ll sum(ll x1, ll y1, ll x2, ll y2){
+        ll s = 0;
+        s += sum_of_1_to_idx(x2, y2);
+        s -= sum_of_1_to_idx(x2, y1 - 1);
+        s -= sum_of_1_to_idx(x1 - 1, y2);
+        s += sum_of_1_to_idx(x1 - 1, y1 - 1);
+        return s;
+    }
+};
 ```
