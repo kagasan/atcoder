@@ -1,0 +1,1 @@
+https://onlinejudge.u-aizu.ac.jp/beta/room.html#NAIST1029/info
