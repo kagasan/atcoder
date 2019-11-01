@@ -25,7 +25,7 @@ int main(){
 ```
 
 # set(関数)
-[詳細](set.md)
+[詳細](lib/set.md)
 ```cpp
 template<class T> T ika_max(set<T> &S, const T &x){
     typename set<T>::iterator it = S.lower_bound(x);
