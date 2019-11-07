@@ -1,0 +1,10 @@
+https://atcoder.jp/contests/agc014/submissions/8322953
+http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3976908#1
+https://atcoder.jp/contests/abc027/submissions/8324537
+https://atcoder.jp/contests/abc027/submissions/8324906
+https://atcoder.jp/contests/abc027/submissions/8325084
+https://atcoder.jp/contests/abc027/submissions/8325096
+https://atcoder.jp/contests/abc026/submissions/8325250
+https://atcoder.jp/contests/abc026/submissions/8325402
+https://atcoder.jp/contests/abc026/submissions/8325463
+https://atcoder.jp/contests/abc026/submissions/8325503
