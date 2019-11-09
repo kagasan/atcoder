@@ -404,42 +404,47 @@ class BIT2{
 
 # RMQ
 0-indexedなデータ構造。  
-update(k, x)でk番目の要素を更新。  
-query(a, b)で区間[a, b)の最小を取得。
 ```cpp
-//0-indexed RMQ
+// 0indexed-RMQ[l, r]
 class RMQ{
     public:
-    int N;
-    ll MAX;
-    vector<ll>dat;
-    RMQ(int n, ll x){
-        N = 1;
-        while(N < n)N *= 2;
-        dat = vector<ll>(2 * N);
-        for(int i = 0; i < 2 * N - 1; i++)dat[i] = x;
-        MAX = (1ll) << 62;
-    }
-    void update(int k, ll x){
-        k += N - 1;
-        dat[k] = x;
-        while(k > 0){
-            k = (k - 1) / 2;
-            dat[k] = min(dat[k * 2 + 1], dat[k * 2 + 2]);
+    ll N;
+    vector<ll>mn, mx, L, R;
+    RMQ(ll n, ll x = 0){
+        for(N = 1; N < n + 5;)N *= 2;
+        mn.resize(2 * N, x);
+        mx.resize(2 * N, x);
+        L.resize(2 * N, -1);
+        R.resize(2 * N, -1);
+        for(ll i = 0; i < N; i++)L[i + N] = R[i + N] = i;
+        for(ll i = N - 1; i > 0; i--){
+            L[i] = L[i * 2];
+            R[i] = R[i * 2 + 1];
         }
     }
-    // [a, b)
-    ll query(int a, int b, int k, int l, int r){
-        if(r <= a || b <= l)return MAX;
-        if(a <= l && r <= b)return dat[k];
-        else{
-            ll vl = query(a, b, k * 2 + 1, l, (l + r) / 2);
-            ll vr = query(a, b, k * 2 + 2, (l + r) / 2, r);
-            return min(vl, vr);
+    void add(ll idx, ll x){
+        idx += N;
+        mn[idx] += x;
+        mx[idx] += x;
+        for(idx /= 2; idx > 0; idx /= 2){
+            mn[idx] = min(mn[idx * 2], mn[idx * 2 + 1]);
+            mx[idx] = max(mx[idx * 2], mx[idx * 2 + 1]);
         }
     }
-    ll query(int a, int b){
-        return query(a, b, 0, 0, N);
+    void update(ll idx, ll x){
+        add(idx, x - mn[idx + N]);
+    }
+    ll get_min(ll l, ll r, ll idx = 1){
+        if(l <= L[idx] && R[idx] <= r)return mn[idx];
+        if(R[idx * 2] < l)return get_min(l, r, idx * 2 + 1);
+        if(r < L[idx * 2 + 1])return get_min(l, r, idx * 2);
+        return min(get_min(l, r, idx * 2), get_min(l, r, idx * 2 + 1));
+    }
+    ll get_max(ll l, ll r, ll idx = 1){
+        if(l <= L[idx] && R[idx] <= r)return mx[idx];
+        if(R[idx * 2] < l)return get_max(l, r, idx * 2 + 1);
+        if(r < L[idx * 2 + 1])return get_max(l, r, idx * 2);
+        return max(get_max(l, r, idx * 2), get_max(l, r, idx * 2 + 1));
     }
 };
 ```
