@@ -70,6 +70,9 @@ priority_queue<int>Q;
 # 累積和,BIT
 - [詳細](lib/imos_bit.md)
 
+# MOD
+- [詳細](lib/mod.md)
+
 # GCD(最大公約数),LCM(最小公倍数)
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
