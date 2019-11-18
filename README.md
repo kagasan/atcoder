@@ -630,6 +630,8 @@ ll imosGet2d(const vector<vector<ll> > &VEC, int ax, int ay, int bx, int by){
 ```
 # 組み合わせの数
 [詳細](combination/combination.md)
+! 壊れている可能性大
+
 - 並び替え
   - N種の要素を並び替えてできる通りの数
   - 階乗, factorial
