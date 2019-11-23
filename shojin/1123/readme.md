@@ -1,0 +1,1 @@
+https://atcoder.jp/contests/ddcc2020-qual
