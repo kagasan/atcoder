@@ -1,6 +1,15 @@
-# 簡単なやつ
-```cpp
+#include "bits/stdc++.h"
+using namespace std;
+typedef long long ll;
+typedef pair<ll, ll> P;
+#define rep(i, n) for(ll (i) = 0; (i) < (n); (i)++)
+#define rep1(i, n) for(ll (i) = 1; (i) <= (n); (i)++)
+#define rrep(i, n) for(ll (i) = (n) - 1; (i) >= 0; (i)--)
+#define rrep1(i, n) for(ll (i) = (n); (i) >= 1; (i)--)
+const ll INF = 1145141919;
 const ll MOD = 1000000007;
+template<class T> void chmax(T &a, const T &b){if(a < b){a = b;}}
+template<class T> void chmin(T &a, const T &b){if(a > b){a = b;}}
 
 // サイズ可変mod
 class mod{
@@ -73,4 +82,21 @@ class mod{
         finv = vector<ll>(1, 1);
     }
 };
-```
+
+ll solve(ll x, ll y){
+    if((x + y) % 3)return 0;
+    ll a = (2 * x - y) / 3;
+    ll b = x - 2 * a;
+    if(a < 0 || b < 0)return 0;
+    mod m(MOD);
+    return m.m_nCk(a + b, a);
+}
+
+int main(){
+
+    ll X, Y;
+    cin >> X >> Y;
+    cout << solve(X, Y) << endl;
+
+    return 0;
+}
