@@ -1,0 +1,35 @@
+#include "bits/stdc++.h"
+using namespace std;
+typedef long long ll;
+typedef pair<ll, ll> P;
+#define rep(i, n) for(ll (i) = 0; (i) < (n); (i)++)
+#define rep1(i, n) for(ll (i) = 1; (i) <= (n); (i)++)
+#define rrep(i, n) for(ll (i) = (n) - 1; (i) >= 0; (i)--)
+#define rrep1(i, n) for(ll (i) = (n); (i) >= 1; (i)--)
+const ll INF = 1145141919;
+const ll MOD = 1000000007;
+template<class T> void chmax(T &a, const T &b){if(a < b){a = b;}}
+template<class T> void chmin(T &a, const T &b){if(a > b){a = b;}}
+
+int main(){
+    ll N;
+    cin >> N;
+    ll cnt[66][2] = {};
+    rep(i, N){
+        ll a;
+        cin >> a;
+        rep(j, 62)cnt[j][0 != (a & (1LL << j))]++;
+    }
+    ll ans = 0;
+    rep(i, 62){
+        ll tmp = 1LL << i;
+        tmp %= MOD;
+        tmp = (tmp * cnt[i][0]) % MOD;
+        tmp = (tmp * cnt[i][1]) % MOD;
+        ans = (ans + tmp) % MOD;
+    }
+    cout << ans << endl;
+
+
+    return 0;
+}
