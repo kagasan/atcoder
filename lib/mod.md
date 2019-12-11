@@ -74,3 +74,11 @@ class mod{
     }
 };
 ```
+```cpp
+// string numberをmodとる
+ll smod(string s){
+    ll ret = 0;
+    rep(i, s.size())ret = (ret * 10 + s[i] - '0') % MOD;
+    return ret;
+}
+```
