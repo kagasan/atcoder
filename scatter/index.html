@@ -1,0 +1,115 @@
+<canvas id = 'jsg'></canvas>
+<!-- <script src = "standings.js"></script> -->
+<script src = "abc147.js"></script>
+<script src = "ac.js"></script>
+<script src = "plotly-latest.min.js"></script>
+<script>
+var canvas = document.getElementById("jsg");
+var ctx = canvas.getContext("2d");
+canvas.height = 850;
+canvas.width = 650;
+
+function rgb(r = 255, g = 0, b = 0){return "rgb(" + r + "," + g + "," + b + ")";}
+function drawCircle(x, y, r, color, thickness = 1){
+    if(thickness < 0){
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2, true);
+        ctx.fill();
+    }
+    else{
+        ctx.strokeStyle = color;
+        ctx.lineWidth = thickness;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2, false);
+        ctx.stroke();
+    }
+}
+function drawBox(x1, y1, x2, y2, color, thickness = 1){
+    var w = x2 - x1;
+    var h = y2 - y1;
+    if(thickness < 0){
+        ctx.fillStyle = color;
+        ctx.fillRect(x1, y1, w, h);
+    }
+    else{
+        ctx.lineWidth = thickness;
+        ctx.strokeStyle = color;
+        ctx.strokeRect(x1, y1, w, h);
+    }
+}
+function drawLine(x1, y1, x2, y2, color = "#000000", thickness = 1){
+    ctx.lineWidth = thickness;
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+}
+
+function drawString(x, y, text, color = "#000000", size = 16, font = "メイリオ"){
+    ctx.font = "" + size + "px '" + font +"'";
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y + size);
+}
+
+function draw(x, y, color, sz = 3){
+    drawCircle(x, y, sz, color, -1);
+}
+
+function drawUser(cnt, rate, sz = 3){
+    var color = rgb(0, 0, 0);
+    if(rate >= 0)color = "#808080";
+    if(rate >= 400)color = "#804000";
+    if(rate >= 800)color = "#008000";
+    if(rate >= 1200)color = "#00C0C0";
+    if(rate >= 1600)color = "#0000FF";
+    if(rate >= 2000)color = "#C0C000";
+    if(rate >= 2400)color = "#FF8000";
+    if(rate >= 2800)color = "#FF0000";
+    draw(cnt / 5, (4000 - rate) / 5, color, sz);
+}
+
+drawBox(0, 0, 1000, 1000, rgb(255, 255, 255), -1);
+drawBox(1, 1, 600, 800, rgb(0, 0, 0), 2);
+for(var r = 400; r < 4000; r += 400){
+    drawLine(1, r / 5, 5, r / 5, rgb(0, 0, 0), 2);
+    drawLine(595, r / 5, 600, r / 5, rgb(0, 0, 0), 2);
+    drawString(605, r / 5 - 10, "" + (4000 - r), rgb(0, 0, 0));
+}
+for(var c = 500; c < 3000; c += 500){
+    drawLine(c / 5, 1, c / 5, 5, rgb(0, 0, 0), 2);
+    drawLine(c / 5, 795, c / 5, 800, rgb(0, 0, 0), 2);
+    drawString(c / 5 - 20, 805, "" + c, rgb(0, 0, 0));
+}
+
+var mp = {};
+for(var i = 0; i < ac.length; i++){
+    mp[ac[i].user_id] = ac[i].problem_count;
+}
+function max(a, b){return (a > b ? a : b);}
+function min(a, b){return (a < b ? a : b);}
+var mx_rate = -5000, mn_rate = 5000;
+var mx_cnt = -5000, mn_cnt = 5000;
+
+drawString(270, 820, "ac count", rgb(0, 0, 0));
+
+for(var i = 0; i < standings.StandingsData.length; i++){
+    var name = standings.StandingsData[i].UserScreenName;
+    var rate = standings.StandingsData[i].Rating;
+    var Country = standings.StandingsData[i].Country;
+    var cnt = mp[name];
+    console.log(name + ", " + rate + ", " + cnt);
+    if(Country == "JP")drawUser(cnt, rate);
+    // if(name == "kagasan")drawUser(cnt, rate, 5);
+    mx_rate = max(mx_rate, rate);
+    mx_cnt = max(mx_cnt, cnt);
+    mn_rate = min(mn_rate, rate);
+    mn_cnt = min(mn_cnt, cnt);
+}
+console.log("mx_rate : " + mx_rate);
+console.log("mn_rate : " + mn_rate);
+console.log("mx_cnt : " + mx_cnt);
+console.log("mn_cnt : " + mn_cnt);
+
+</script>
