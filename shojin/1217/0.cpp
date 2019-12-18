@@ -11,21 +11,27 @@ const ll MOD = 1000000007;
 template<class T> void chmax(T &a, const T &b){if(a < b){a = b;}}
 template<class T> void chmin(T &a, const T &b){if(a > b){a = b;}}
 
-ll A[5050];
+ll N, A;
+ll dp[55][2600];
 
 int main(){
 
-    ll N;
-    cin >> N;
-    rep1(i, N)cin >> A[i];
+    dp[0][0] = 1;
+    cin >> N >> A;
+    rep(i, N){
+        ll x;
+        cin >> x;
+        rrep1(num, N)rrep1(sum, 2500){
+            ll from_sum = sum - x;
+            if(from_sum < 0)continue;
+            dp[num][sum] += dp[num - 1][from_sum];
+        }
+    }
     ll ans = 0;
-    rep1(i, N){
-        ll a = 0, b = 0;
-        for(ll j = 1; j < i; j++)if(A[j] < A[i])a++;
-        for(ll j = N; j > i; j--)if(A[j] < A[i])b++;
-        ans += a * b;
+    rep1(num, N)rep1(sum, 2500)if(num * A == sum){
+        ans += dp[num][sum];
     }
     cout << ans << endl;
-    
+
     return 0;
 }
