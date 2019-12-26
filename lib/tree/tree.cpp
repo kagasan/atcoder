@@ -118,21 +118,17 @@ void ABC148F(){
     ll cnt = 0;
     for(;;){
         ll p = parent[u][0];
-        if(leaf[u] && depth[p] == cnt){
-            cout << cnt << endl;
-            return;
-        }
-        if(leaf[u] && depth[p] == cnt + 1){
-            cout << cnt + 1 << endl;
-            return;
-        }
-        if(depth[p] > cnt + 1){
+        if(depth[p] == cnt + 1){
             cnt++;
-            u = p;
-            continue;
+            break;
         }
+        if(depth[p] == cnt)break;
+        cnt++;
+        u = p;
     }
-
+    ll tmp = 0;
+    rep1(i, N)if(lca(i, u, depth, parent) == u)chmax(tmp, depth[i] - depth[u]);
+    cout << cnt + tmp << endl;
 }
 
 int main(){
