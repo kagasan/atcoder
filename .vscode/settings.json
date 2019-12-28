@@ -31,6 +31,7 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "memory": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "__locale": "cpp"
     }
 }
