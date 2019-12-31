@@ -83,6 +83,9 @@ priority_queue<int>Q;
 # MOD
 - [詳細](lib/mod.md)
 
+# tree,LCA
+- [詳細](lib/tree.md)
+
 # GCD(最大公約数),LCM(最小公倍数)
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
