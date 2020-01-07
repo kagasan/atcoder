@@ -6,6 +6,7 @@
 （拡張の例：W*Hの問題についてW*1で考察して，Hに拡張してみる）
 
 # template
+[paiza](https://paiza.io/projects/HFQxqtclBAj06LsR8Fux9Q)
 ```cpp
 #include "bits/stdc++.h"
 using namespace std;

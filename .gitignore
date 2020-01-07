@@ -1,5 +1,7 @@
 *.out
 *.txt
 tmp/*
-*.DS_Store
+.DS_Store
 scatter/*.js
+.DS_Store
+.DS_Store
