@@ -18,9 +18,30 @@ const ll INF = 1145141919;
 const ll MOD = 1000000007;
 const ll NUM = 101010;
 
+ll m_pow(ll a, ll b){
+    ll ret = 1;
+    while(b > 0){
+        if(b & 1)(ret *= a) %= MOD;
+        (a *= a) %= MOD;
+        b >>= 1;
+    }
+    return ret;
+}
+
 int main(){
 
-    
+    ll N;
+    cin >> N;
+    V v(N);
+    rep(i, N)cin >> v[i];
+    sort(v.begin(), v.end(), greater<ll>());
+    ll ans = 0, step = 0;
+    if(N > 1)step = m_pow(2, N - 2);
+    for(ll i = 0, j = m_pow(2, N - 1); i < N; i++, j = (j + step) % MOD){
+        ans = (ans + (v[i] * j) % MOD) % MOD;
+    }
+    ans = (ans * m_pow(2, N)) % MOD;
+    cout << ans << endl;
     
     return 0;
 }
