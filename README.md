@@ -93,6 +93,14 @@ ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
 ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
 ```
 
+# struct
+```cpp
+struct hoge{
+    ll a, b, c;
+    hoge(ll _a, ll _b, ll _c):a(_a),b(_b),c(_c){}
+};
+```
+
 # string
 **vectorみたいに宣言**
 ```cpp
