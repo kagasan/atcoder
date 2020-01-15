@@ -105,15 +105,10 @@ struct hoge{
 ```cpp
 // ms timer
 struct TIMER{
-    std::chrono::system_clock::time_point tp, tmp;
-    void start(){
-        tp = std::chrono::system_clock::now();
-    }
+    std::chrono::system_clock::time_point tp;
+    void start(){tp = std::chrono::system_clock::now();}
     TIMER(){start();}
-    double now(){
-        tmp = std::chrono::system_clock::now();
-        return std::chrono::duration_cast<std::chrono::milliseconds>(tmp - tp).count();
-    }
+    double now(){return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - tp).count();}
 };
 ```
 
