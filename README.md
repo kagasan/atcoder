@@ -101,6 +101,23 @@ struct hoge{
 };
 ```
 
+# timer
+```cpp
+// ms timer
+struct TIMER{
+    std::chrono::system_clock::time_point tp, tmp;
+    void start(){
+        tp = std::chrono::system_clock::now();
+    }
+    TIMER(){start();}
+    double now(){
+        tmp = std::chrono::system_clock::now();
+        return std::chrono::duration_cast<std::chrono::milliseconds>(tmp - tp).count();
+    }
+};
+```
+
+
 # string
 **vectorみたいに宣言**
 ```cpp
