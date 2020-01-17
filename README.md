@@ -93,6 +93,26 @@ ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
 ll lcm(ll a, ll b){return a/gcd(a,b)*b;}
 ```
 
+# struct
+```cpp
+struct hoge{
+    ll a, b, c;
+    hoge(ll _a, ll _b, ll _c):a(_a),b(_b),c(_c){}
+};
+```
+
+# timer
+```cpp
+// ms timer
+struct TIMER{
+    std::chrono::system_clock::time_point tp;
+    void start(){tp = std::chrono::system_clock::now();}
+    TIMER(){start();}
+    double now(){return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - tp).count();}
+};
+```
+
+
 # string
 **vectorみたいに宣言**
 ```cpp
@@ -1086,3 +1106,29 @@ class MIN_MAX_QUEUE{
 - 同様に各ノードについて、xコストで移動できるノードからxコストでいけるノードを調べると、2xコストで移動できるノードがわかる。O(N)
 - コストを求める場合は、開始ノードから可能な範囲でジャンプしていれば良い。
 - 限界ノードを調べる時も、開始ノードから可能な範囲でジャンプしていれば良い。
+
+# K進数の全列挙
+```cpp
+class ZEN{
+    public:
+    vector<ll>v;
+    ll N, K;
+    ZEN(ll n, ll k){
+        v = vector<ll>(n + 1, 0);
+        N = n;
+        K = k;
+    }
+    void next(){
+        v[0]++;
+        for(ll i = 0; i < N; i++){
+            if(v[i] == K){
+                v[i] = 0;
+                v[i + 1]++;
+            }
+        }
+    }
+    bool end(){
+        return v[N] != 0;
+    }
+};
+```
