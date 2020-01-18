@@ -161,3 +161,27 @@ class bit2d{
     }
 };
 ```
+
+# 区間に12345...を足す
+```cpp
+//区間[p_i.first, p_i.second]に1,2,3,4,5,...を足す
+void ruiseki_inc(V &v, vector<P>&p){
+    // 初期化
+    rep(i, v.size())v[i] = 0;
+
+    // 左端をたくさん準備
+    rep(i, p.size()){
+        v[p[i].first]++;
+        v[p[i].second + 1]--;
+    }
+    rep(i, v.size() - 1)v[i + 1] += v[i];
+    
+    // 右端をまとめて準備
+    rep(i, p.size()){
+        v[p[i].second + 1]-=p[i].second - p[i].first + 1;
+    }
+
+    // 累積
+    rep(i, v.size() - 1)v[i + 1] += v[i];
+}
+```
