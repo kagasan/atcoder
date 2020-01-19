@@ -65,7 +65,7 @@ class mod{
         return m_nCk(n + k - 1, k);
     }
     
-    mod(ll m){
+    mod(ll m = MOD){
         M = m;
         N = 1;
         fact = vector<ll>(1, 1);
