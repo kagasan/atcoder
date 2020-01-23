@@ -1,5 +1,11 @@
 文字列処理テクニック
 # 切り出し
+```cpp
+string s = "01234567";
+cout << s.substr(0, 2) << endl; //01
+cout << s.substr(2, 3) << endl; //234
+```
+
 # 回文判定
 ```cpp
 bool kaibun(string s){
