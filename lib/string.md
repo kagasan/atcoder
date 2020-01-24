@@ -6,6 +6,14 @@ cout << s.substr(0, 2) << endl; //01
 cout << s.substr(2, 3) << endl; //234
 ```
 
+# find
+```cpp
+bool str_find(string a, string b){return a.find(b) != string::npos;}
+```
+# replace
+
+# find_replace
+
 # 回文判定
 ```cpp
 bool kaibun(string s){
