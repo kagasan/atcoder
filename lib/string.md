@@ -11,7 +11,14 @@ cout << s.substr(2, 3) << endl; //234
 bool str_find(string a, string b){return a.find(b) != string::npos;}
 ```
 # replace
-
+```cpp
+bool replace(string &str, const string &from, const string &to){
+    ll pos = str.find(from);
+    if(pos == string::npos)return false;
+    str.replace(pos, from.size(), to);
+    return true;
+}
+```
 # find_replace
 
 # 回文判定
