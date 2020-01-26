@@ -19,7 +19,7 @@ bool replace(string &str, const string &from, const string &to){
     return true;
 }
 ```
-# find_replace
+# KMP
 
 # 回文判定
 ```cpp
