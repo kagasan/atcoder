@@ -21,6 +21,8 @@ bool replace(string &str, const string &from, const string &to){
 ```
 # KMP
 
+# ロリハ
+
 # 回文判定
 ```cpp
 bool kaibun(string s){
