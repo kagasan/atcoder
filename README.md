@@ -36,6 +36,20 @@ int main(){
 }
 ```
 
+# auto
+```cpp
+set<ll>S;
+V v;
+rrep(i, 5){
+S.insert(i);
+v.push_back(i);
+}
+// 01234
+for(auto x : S)cout << x << endl;
+// 43210
+for(auto x : v)cout << x << endl;
+```
+
 # set(関数)
 [詳細](lib/set.md)
 ```cpp
