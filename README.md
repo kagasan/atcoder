@@ -963,6 +963,30 @@ for(ll i = 0; i < 202020; i++){
 }
 ```
 
+# LIS(最長増加部分列)
+```cpp
+ll LIS_test(const V &v){
+    V dp(v.size() + 1, INF);
+    for(auto x : dp)cout << ((x == INF) ? "+" : to_string(x)) << " ";
+    cout << endl << endl;
+    for(auto x : v){
+        *lower_bound(dp.begin(), dp.end(), x) = x;
+        cout << x << endl;
+        for(auto x : dp)cout << ((x == INF) ? "+" : to_string(x)) << " ";
+        cout << endl << endl;
+    }
+    return lower_bound(dp.begin(), dp.end(), INF) - dp.begin();    
+}
+
+ll LIS(const V &v){
+    V dp(v.size() + 1, INF);
+    for(auto x : v){
+        *lower_bound(dp.begin(), dp.end(), x) = x;
+    }
+    return lower_bound(dp.begin(), dp.end(), INF) - dp.begin();
+}
+```
+
 # rot
 ```cpp
 // 回転は  
