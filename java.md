@@ -60,6 +60,7 @@ for(int i = 1; i <= N; i++){
 ```
 
 ## methods
+```java
 import java.util.*;
 public class Main {
     public static int max(int a, int b){return (a > b ? a : b);}
@@ -72,6 +73,7 @@ public class Main {
         
     }
 }
+```
 
 ## 64bit
 ```java
