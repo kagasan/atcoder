@@ -350,7 +350,7 @@ while(!Q.empty()){
 // 3
 // 4
 ```
-# deque
+# dequeue
 両端から操作できる
 ```cpp
 deque<int> dq = {3, 1, 4};
@@ -373,6 +373,10 @@ for(int i = 0; i < dq.size(); i++){
 // 0
 // 1
 // 2
+
+// S.erase(5);
+// だとS内の5を全て削除するので
+// S.erase(S.find(5));
 ```
 
 # BIT
