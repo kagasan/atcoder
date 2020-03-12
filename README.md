@@ -102,6 +102,10 @@ priority_queue<int>Q;
 # tree,LCA
 - [詳細](lib/tree.md)
 
+# multiset
+- [詳細](lib/multiset.md)
+
+
 # GCD(最大公約数),LCM(最小公倍数)
 ```cpp
 ll gcd(ll a, ll b){return b?gcd(b,a%b):a;}
